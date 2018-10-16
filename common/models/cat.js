@@ -14,7 +14,8 @@ module.exports = function(Cat) {
         data: ctx.instance,
         method: 'POST'
       });
-    } else {
+    } 
+    else {
       //Now publishing the data..
       pubsub.publish(socket, {
         collectionName: 'Cat',

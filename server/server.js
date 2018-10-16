@@ -15,6 +15,7 @@ app.start = function() {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
       console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
     }
+   
   });
 };
 
@@ -47,12 +48,20 @@ boot(app, __dirname, function(err) {
           }); //find function..    
         } //authenticate function..
     });
-  
+
     app.io.on('connection', function(socket){
-      console.log('a user connected');
-      socket.on('disconnect', function(){
-          console.log('user disconnected');
+      // console.log('user connected');
+      socket.on('chat message', function(msg){
+        console.log("backend recieved msg===>>>>",msg)
+        app.io.emit('chat message', msg);
       });
+      // socket.on('disconnect', function(){
+      //     console.log('user disconnected');
+      // });
+      // socket.on('chat message',(msg)=>{
+      //   console.log("message: " + msg)
+      //   socket.broadcast.emit(msg);
+      // })
     });
   }
 });
