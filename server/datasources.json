@@ -1,0 +1,12 @@
+{
+    "mydb":{
+        "host":"localhost",
+        "port":27017,
+        "url":"",
+        "database":"saifi",
+        "password":"",
+        "user":"",
+        "name":"",
+        "connector":"mongodb"
+    }
+}
