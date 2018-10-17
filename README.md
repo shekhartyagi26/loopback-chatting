@@ -52,39 +52,6 @@ The LoopBack framework is a set of Node.js modules that you can use independentl
 * [loopback-connector-postgresql](https://github.com/strongloop/loopback-connector-postgresql)
 * [loopback-connector-rest](https://github.com/strongloop/loopback-connector-rest)
 
-### Enterprise Connectors
-* [loopback-connector-oracle](https://github.com/strongloop/loopback-connector-oracle)
-* [loopback-connector-mssql](https://github.com/strongloop/loopback-connector-mssql)
-* [loopback-connector-soap](https://github.com/strongloop/loopback-connector-soap)
-* [loopback-connector-atg](https://github.com/strongloop/loopback-connector-atg)
-
-### Community Connectors
-
-The LoopBack community has created and supports a number of additional connectors.  See [Community connectors](https://loopback.io/doc/en/lb2/Community-connectors.html) for details.
-
-### Components
-* [loopback-component-push](https://github.com/strongloop/loopback-component-push)
-* [loopback-component-storage](https://github.com/strongloop/loopback-component-storage)
-* [loopback-component-passport](https://github.com/strongloop/loopback-component-passport)
-
-### Client SDKs
-* [loopback-sdk-ios](https://github.com/strongloop/loopback-sdk-ios)
-* [loopback-sdk-android](https://github.com/strongloop/loopback-sdk-android)
-* [loopback-sdk-angular](https://github.com/strongloop/loopback-sdk-angular)
-  * [loopback-sdk-angular-cli](https://github.com/strongloop/loopback-sdk-angular-cli)
-  * [grunt-loopback-sdk-angular](https://github.com/strongloop/grunt-loopback-sdk-angular)
-
-### Tools
-* [loopback-explorer](https://github.com/strongloop/loopback-explorer)
-* [loopback-workspace](https://github.com/strongloop/loopback-workspace)
-* [generator-loopback](https://github.com/strongloop/generator-loopback)
-
-### Examples
-
-StrongLoop provides a number of example applications that illustrate various key LoopBack features. In some cases, they have accompanying step-by-step instructions (tutorials).
-
-See [examples at loopback.io](https://loopback.io/examples/) for details.
-
 ## Resources
 
   * [Documentation](https://loopback.io/doc/).
