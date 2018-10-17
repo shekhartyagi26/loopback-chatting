@@ -29,7 +29,6 @@ boot(app, __dirname, function (err) {
   if (require.main === module) {
     let io = require('socket.io')(app.start());
     io.on('connection', function (socket) {
-      console.log("user connected")
       var myModelName = app.models.cat;
       let options = {
         limit: 100,
@@ -51,9 +50,7 @@ boot(app, __dirname, function (err) {
             throw err
           else
             {
-              console.log("result====>>>>",result)
               myModelName.findOne({_id:mongoose.Types.ObjectId(result.id)},(err, res) => {
-                console.log("new id==>>>",res)
                 if (err)
                   throw err
                 else {
@@ -65,7 +62,7 @@ boot(app, __dirname, function (err) {
       });
 
       socket.on('disconnect', function () {
-        console.log("user disconected")
+        
       });
 
     });
