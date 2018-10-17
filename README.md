@@ -20,32 +20,6 @@ LoopBack tools include:
 
 For more details, see [https://loopback.io/](https://loopback.io/).
 
-
-## Module Long Term Support Policy
-
-LoopBack 3.x is now in active LTS.
-
-This module adopts the [Module Long Term Support (LTS)](http://github.com/CloudNativeJS/ModuleLTS) policy, with the following End Of Life (EOL) dates:
-
-| Version    | Status          | Published | EOL                  |
-| ---------- | --------------- | --------- | -------------------- |
-| LoopBack 4 | Current         | Oct 2018  | Apr 2021 _(minimum)_ |
-| Loopback 3 | Active LTS      | Dec 2016  | Dec 2019             |
-| Loopback 2 | Maintenance LTS | Jul 2014  | Apr 2019             |
-
-Learn more about our LTS plan in [docs](https://loopback.io/doc/en/contrib/Long-term-support.html).
-
-## LoopBack modules
-
-The LoopBack framework is a set of Node.js modules that you can use independently or together.
-
-![LoopBack modules](https://github.com/strongloop/loopback/raw/master/docs/assets/lb-modules.png "LoopBack modules")
-
-### Core
-* [loopback](https://github.com/strongloop/loopback)
-* [loopback-datasource-juggler](https://github.com/strongloop/loopback-datasource-juggler)
-* [strong-remoting](https://github.com/strongloop/strong-remoting)
-
 ### Connectors
 * [loopback-connector-mongodb](https://github.com/strongloop/loopback-connector-mongodb)
 * [loopback-connector-mysql](https://github.com/strongloop/loopback-connector-mysql)
@@ -60,13 +34,3 @@ The LoopBack framework is a set of Node.js modules that you can use independentl
   * [LoopBack Google Group](https://groups.google.com/forum/#!forum/loopbackjs).
   * [GitHub issues](https://github.com/strongloop/loopback/issues).
   * [Gitter chat](https://gitter.im/strongloop/loopback).
-
-## Contributing
-
-Contributions to the LoopBack project are welcome! See [Contributing to LoopBack](https://loopback.io/doc/en/contrib/index.html) for more information.
-
-## Reporting issues
-
-One of the easiest ways to contribute to LoopBack is to report an issue. See [Reporting issues](https://loopback.io/doc/en/contrib/Reporting-issues.html) for more information.
-
-[![Analytics](https://sl-beacon.appspot.com/UA-37775386-1/github/loopback/readme?pixel)](https://github.com/strongloop/loopback)
