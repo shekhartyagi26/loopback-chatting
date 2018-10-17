@@ -19,69 +19,43 @@ app.start = function () {
   });
 };
 
-// Bootstrap the application, configure models, datasources and middleware.
-// Sub-apps like REST API are mounted via boot scripts.
-var i = 1;
-var j = 2;
-
 boot(app, __dirname, function (err) {
 
   if (err) throw err;
   // start the server if `$ node server.js`
   if (require.main === module) {
-    app.io = require('socket.io')(app.start());
-    require('socketio-auth')(app.io, {
-      authenticate: function (socket, value, callback) {
-
-        var AccessToken = app.models.AccessToken;
-        //get credentials sent by the client
-        var token = AccessToken.find({
-          where: {
-            and: [{
-              userId: value.userId
-            }, {
-              id: value.id
-            }]
-          }
-        }, function (err, tokenDetail) {
-          if (err) throw err;
-          if (tokenDetail.length) {
-            callback(null, true);
-          } else {
-            callback(null, false);
-          }
-        }); //find function..    
-      } //authenticate function..
-    });
-
+    app.io = require('socket.io')(app.start);
     app.io.on('connection', function (socket) {
 
       var myModelName = app.models.cat;
-      
       let options = {
-        limit:100, 
-        sort:{ _id:1 }
-      }
-
-      myModelName.find({}, options, (err, res)=>{
-        if(err)
-          throw err
-        else{
-          socket.emit('output' , res)
+        limit: 100,
+        sort: {
+          _id: 1
         }
-          
+      }
+      
+      myModelName.find({}, options, (err, res) => {
+        if (err)
+          throw err
+        else {
+          socket.emit('output', res)
+        }
+
       })
 
       socket.on('input', function (message) {
-        
-          myModelName.insert({ message:message }, ()=>{
-            app.io.emit('output', [data])
-          })
+
+        myModelName.insert({
+          message: message
+        }, () => {
+          app.io.emit('output', [data])
+        })
 
       });
-      
+
       socket.on('disconnect', function () {
-        
+
       });
 
     });
