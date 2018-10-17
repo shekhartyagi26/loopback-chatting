@@ -41,6 +41,7 @@ $ npm install --save loopback-connector-mongodb
 
 For the purposes of this example, we will use a preconfigured StrongLoop MongoDB server. Edit server/datasources.json to set the MongoDB configs:
 
+add a code in server/datasources.json
 ```json
 {
   ...
@@ -57,6 +58,8 @@ For the purposes of this example, we will use a preconfigured StrongLoop MongoDB
 ```
 ##  Configure the model congig
 
+add a code in server/model-cofig.json
+
 ```json
 {
   ...
@@ -72,7 +75,7 @@ First, install Socket.IO as follows:
 $ npm install socket.io
 
 # Configuring Socket.io on the server side
-
+Add a code in server/server.js
 ```js
 if (require.main === module) {
   app.io = require('socket.io')(app.start);
