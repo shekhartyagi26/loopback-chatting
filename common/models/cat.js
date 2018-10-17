@@ -4,7 +4,7 @@ var loopback = require('loopback');
 
 module.exports = function(Cat) {
 
-    //Cat after save..
+    // Cat after save..
   Cat.observe('after save', function (ctx, next) {
     var socket = Cat.app.io;
     if (ctx.isNewInstance) {

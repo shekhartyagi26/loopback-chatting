@@ -6,20 +6,8 @@
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "message": {
       "type": "string",
-      "required": true
-    },
-    "age": {
-      "type": "number",
-      "required": true
-    },
-    "height": {
-      "type": "number",
-      "required": true
-    },
-    "weight": {
-      "type": "number",
       "required": true
     }
   },
