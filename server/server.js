@@ -15,7 +15,6 @@ app.start = function () {
       var explorerPath = app.get('loopback-component-explorer').mountPath;
       console.log('Browse your REST API at %s%s', baseUrl, explorerPath);
     }
-
   });
 };
 
@@ -45,7 +44,6 @@ boot(app, __dirname, function (err) {
       })
 
       socket.on('input', function (message) {
-
         myModelName.insert({
           message: message
         }, () => {

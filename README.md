@@ -21,69 +21,152 @@ LoopBack tools include:
 For more details, see [https://loopback.io/](https://loopback.io/).
 
 
-## Module Long Term Support Policy
+## Install the LoopBack CLI tool.
 
-LoopBack 3.x is now in active LTS.
+$ npm install -g loopback-cli
 
-This module adopts the [Module Long Term Support (LTS)](http://github.com/CloudNativeJS/ModuleLTS) policy, with the following End Of Life (EOL) dates:
+## Create a new loopback application
 
-| Version    | Status          | Published | EOL                  |
-| ---------- | --------------- | --------- | -------------------- |
-| LoopBack 4 | Current         | Oct 2018  | Apr 2021 _(minimum)_ |
-| Loopback 3 | Active LTS      | Dec 2016  | Dec 2019             |
-| Loopback 2 | Maintenance LTS | Jul 2014  | Apr 2019             |
+$ slc loopback
 
-Learn more about our LTS plan in [docs](https://loopback.io/doc/en/contrib/Long-term-support.html).
+## Create a new model
 
-## LoopBack modules
+$ slc loopback:model
 
-The LoopBack framework is a set of Node.js modules that you can use independently or together.
+## Install the LoopBack MongoDB connector
 
-![LoopBack modules](https://github.com/strongloop/loopback/raw/master/docs/assets/lb-modules.png "LoopBack modules")
+$ npm install --save loopback-connector-mongodb
 
-### Core
-* [loopback](https://github.com/strongloop/loopback)
-* [loopback-datasource-juggler](https://github.com/strongloop/loopback-datasource-juggler)
-* [strong-remoting](https://github.com/strongloop/strong-remoting)
+##  Configure the data source
+
+For the purposes of this example, we will use a preconfigured StrongLoop MongoDB server. Edit server/datasources.json to set the MongoDB configs:
+
+```json
+{
+  ...
+  "mydb": {
+    "name": "database",
+    "connector": "mongodb",
+    "host": "localhost",
+    "port": 27017,
+    "database": "",
+    "username": "",
+    "password": ""
+  }
+}
+```
+##  Configure the model congig
+
+```json
+{
+  ...
+  "cat": {
+     "dataSource": "mydb",
+    "public": true
+  }
+}
+```
+
+# Installing Socket.io
+First, install Socket.IO as follows:
+$ npm install socket.io
+
+# Configuring Socket.io on the server side
+
+```js
+if (require.main === module) {
+  app.io = require('socket.io')(app.start);
+    app.io.on('connection', function (socket) {
+
+      var myModelName = app.models.cat;
+      let options = {
+        limit: 100,
+        sort: {
+          _id: 1
+        }
+      }
+      
+      myModelName.find({}, options, (err, res) => {
+        if (err)
+          throw err
+        else {
+          socket.emit('output', res)
+        }
+
+      })
+
+      socket.on('input', function (message) {
+        myModelName.insert({
+          message: message
+        }, () => {
+          app.io.emit('output', [data])
+        })
+
+      });
+
+      socket.on('disconnect', function () {
+
+      });
+
+    });
+}
+```
+
+# Configuring Socket.io on the client side
+
+Add file in server/index.html
+
+```html
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body { font: 13px Helvetica, Arial; }
+      form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 100%; }
+      form input { border: 0; padding: 10px; width: 90%; margin-right: .5%; }
+      form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+      #messages { list-style-type: none; margin: 0; padding: 0; }
+      #messages li { padding: 5px 10px; }
+      #messages li:nth-child(odd) { background: #eee; }
+      #messages { margin-bottom: 40px }
+    </style>
+  </head>
+  <body>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io();
+        $('form').submit(function(){
+          socket.emit('input', $('#m').val());
+          $('#m').val('');
+          return false;
+        });
+        socket.on('output', function(data){
+          console.log("frontend recieved msg===>>>>"+JSON.stringify(msg))
+          for(let i = 0; i < data.length; i++ ){
+            $('#messages').append($('<li>').text(data[i].message));
+          }
+          window.scrollTo(0, document.body.scrollHeight);
+        });
+      });
+    </script>
+  </body>
+</html>
+```
+
 
 ### Connectors
 * [loopback-connector-mongodb](https://github.com/strongloop/loopback-connector-mongodb)
 * [loopback-connector-mysql](https://github.com/strongloop/loopback-connector-mysql)
 * [loopback-connector-postgresql](https://github.com/strongloop/loopback-connector-postgresql)
 * [loopback-connector-rest](https://github.com/strongloop/loopback-connector-rest)
-
-### Enterprise Connectors
-* [loopback-connector-oracle](https://github.com/strongloop/loopback-connector-oracle)
-* [loopback-connector-mssql](https://github.com/strongloop/loopback-connector-mssql)
-* [loopback-connector-soap](https://github.com/strongloop/loopback-connector-soap)
-* [loopback-connector-atg](https://github.com/strongloop/loopback-connector-atg)
-
-### Community Connectors
-
-The LoopBack community has created and supports a number of additional connectors.  See [Community connectors](https://loopback.io/doc/en/lb2/Community-connectors.html) for details.
-
-### Components
-* [loopback-component-push](https://github.com/strongloop/loopback-component-push)
-* [loopback-component-storage](https://github.com/strongloop/loopback-component-storage)
-* [loopback-component-passport](https://github.com/strongloop/loopback-component-passport)
-
-### Client SDKs
-* [loopback-sdk-ios](https://github.com/strongloop/loopback-sdk-ios)
-* [loopback-sdk-android](https://github.com/strongloop/loopback-sdk-android)
-* [loopback-sdk-angular](https://github.com/strongloop/loopback-sdk-angular)
-  * [loopback-sdk-angular-cli](https://github.com/strongloop/loopback-sdk-angular-cli)
-  * [grunt-loopback-sdk-angular](https://github.com/strongloop/grunt-loopback-sdk-angular)
-
-### Tools
-* [loopback-explorer](https://github.com/strongloop/loopback-explorer)
-* [loopback-workspace](https://github.com/strongloop/loopback-workspace)
-* [generator-loopback](https://github.com/strongloop/generator-loopback)
-
-### Examples
-
-StrongLoop provides a number of example applications that illustrate various key LoopBack features. In some cases, they have accompanying step-by-step instructions (tutorials).
-
-See [examples at loopback.io](https://loopback.io/examples/) for details.
 
 ## Resources
 
@@ -94,12 +177,3 @@ See [examples at loopback.io](https://loopback.io/examples/) for details.
   * [GitHub issues](https://github.com/strongloop/loopback/issues).
   * [Gitter chat](https://gitter.im/strongloop/loopback).
 
-## Contributing
-
-Contributions to the LoopBack project are welcome! See [Contributing to LoopBack](https://loopback.io/doc/en/contrib/index.html) for more information.
-
-## Reporting issues
-
-One of the easiest ways to contribute to LoopBack is to report an issue. See [Reporting issues](https://loopback.io/doc/en/contrib/Reporting-issues.html) for more information.
-
-[![Analytics](https://sl-beacon.appspot.com/UA-37775386-1/github/loopback/readme?pixel)](https://github.com/strongloop/loopback)
