@@ -34,13 +34,3 @@ For more details, see [https://loopback.io/](https://loopback.io/).
   * [LoopBack Google Group](https://groups.google.com/forum/#!forum/loopbackjs).
   * [GitHub issues](https://github.com/strongloop/loopback/issues).
   * [Gitter chat](https://gitter.im/strongloop/loopback).
-
-## Contributing
-
-Contributions to the LoopBack project are welcome! See [Contributing to LoopBack](https://loopback.io/doc/en/contrib/index.html) for more information.
-
-## Reporting issues
-
-One of the easiest ways to contribute to LoopBack is to report an issue. See [Reporting issues](https://loopback.io/doc/en/contrib/Reporting-issues.html) for more information.
-
-[![Analytics](https://sl-beacon.appspot.com/UA-37775386-1/github/loopback/readme?pixel)](https://github.com/strongloop/loopback)
