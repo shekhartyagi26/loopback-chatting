@@ -78,15 +78,12 @@ $ npm install socket.io
 Add a code in server/server.js
 ```js
 if (require.main === module) {
-  app.io = require('socket.io')(app.start);
-    app.io.on('connection', function (socket) {
-
+    let io = require('socket.io')(app.start());
+    io.on('connection', function (socket) {
       var myModelName = app.models.cat;
       let options = {
         limit: 100,
-        sort: {
-          _id: 1
-        }
+        sort: {_id: 1}
       }
       
       myModelName.find({}, options, (err, res) => {
@@ -95,24 +92,33 @@ if (require.main === module) {
         else {
           socket.emit('output', res)
         }
-
       })
 
       socket.on('input', function (message) {
-        myModelName.insert({
-          message: message
-        }, () => {
-          app.io.emit('output', [data])
+        let data = { message: message }
+        new myModelName(data).save((err, result)=>{
+          if(err)
+            throw err
+          else
+            {
+              console.log(result)
+              myModelName.findById(mongoose.Types.ObjectId(result.id),(err, res) => {
+                if (err)
+                  throw err
+                else {
+                  io.emit('output', res)
+                }
+              })
+            }
         })
-
       });
 
       socket.on('disconnect', function () {
-
+        
       });
 
     });
-}
+  }
 ```
 
 # Configuring Socket.io on the client side
@@ -141,7 +147,7 @@ Add file in server/index.html
     <form action="">
       <input id="m" autocomplete="off" /><button>Send</button>
     </form>
-    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.1.1/socket.io.js"></script>
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
       $(function () {
@@ -151,10 +157,17 @@ Add file in server/index.html
           $('#m').val('');
           return false;
         });
+        socket.on('connect', function() {
+          console.log(' Connected !');
+        });
         socket.on('output', function(data){
-          console.log("frontend recieved msg===>>>>"+JSON.stringify(msg))
-          for(let i = 0; i < data.length; i++ ){
-            $('#messages').append($('<li>').text(data[i].message));
+          if(Array.isArray(data)){
+            for(let i = 0; i < data.length; i++){
+              $('#messages').append($('<li>').text(data[i].message));
+            } 
+          }
+          else{
+            $('#messages').append($('<li>').text(data.message));
           }
           window.scrollTo(0, document.body.scrollHeight);
         });
