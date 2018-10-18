@@ -50,11 +50,12 @@ boot(app, __dirname, function (err) {
             throw err
           else
             {
-              myModelName.findOne({_id:mongoose.Types.ObjectId(result.id)},(err, res) => {
+              console.log(result)
+              myModelName.findById(mongoose.Types.ObjectId(result.id),(err, res) => {
                 if (err)
                   throw err
                 else {
-                  socket.emit('output', res)
+                  io.emit('output', res)
                 }
               })
             }
