@@ -5,7 +5,7 @@ module.exports = function(server) {
   var router = server.loopback.Router();
   // router.get('/', server.loopback.status())
   router.get('/', (req, res)=>{
-    res.sendFile(path.join(__dirname, '../', 'index.html'))
+    res.sendFile(path.join(__dirname, '../../client', 'index.html'))
   });
   server.use(router);
 };
