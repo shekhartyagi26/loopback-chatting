@@ -29,13 +29,13 @@ For more details, see [https://loopback.io/](https://loopback.io/).
 
   $ lb
 
-? What's the name of your application? loopbackProject
+  * ? What's the name of your application? loopbackProject
 
-? Enter name of the directory to contain the project: loopbackProject
+  * ? Enter name of the directory to contain the project: loopbackProject
    create loopbackProject/
      info change the working directory to loopbackProject
 
-? Which version of LoopBack would you like to use? 3.x (Active Long Term Support
+  * ? Which version of LoopBack would you like to use? 3.x (Active Long Term Support
 )
 
 ? What kind of application do you have in mind? empty-server (An empty LoopBack 
@@ -49,27 +49,28 @@ API, without any configured models or datasources)
 
   $ lb model
 
-? Enter the model name: cat
+  * ? Enter the model name: cat
 
-? Select model's base class PersistedModel
+  * ? Select model's base class PersistedModel
 
-? Expose cat via the REST API? Yes
+  * ? Expose cat via the REST API? Yes
 
-? Custom plural form (used to build REST URL): 
+  * ? Custom plural form (used to build REST URL): 
 
-? Common model or server only? common
+  * ? Common model or server only? common
 
 Let's add some user properties now.
 
 Enter an empty property name when done.
-? Property name: name
-   invoke   loopback:property
 
-? Property type: string
+  * ? Property name: name
+    invoke   loopback:property
 
-? Required? Yes
+  * ? Property type: string
 
-? Default value[leave blank for none]:
+  * ? Required(y/No)? Yes
+
+  * ? Default value[leave blank for none]:
 
 ## Run the app
 
