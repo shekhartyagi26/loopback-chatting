@@ -113,8 +113,10 @@ add a code in server/model-cofig.json
 ```
 
 # Installing Socket.io
+
 First, install Socket.IO as follows:
-$ npm install socket.io
+  
+  $ npm install socket.io
 
 # Configuring Socket.io on the server side
 Add a code in server/server.js
