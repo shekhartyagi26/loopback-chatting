@@ -56,7 +56,7 @@ add a code in server/datasources.json
   }
 }
 ```
-##  Configure the model congig
+##  Configure the model config
 
 add a code in server/model-cofig.json
 
@@ -81,42 +81,27 @@ if (require.main === module) {
     let io = require('socket.io')(app.start());
     io.on('connection', function (socket) {
       var myModelName = app.models.cat;
-      let options = {
-        limit: 100,
-        sort: {_id: 1}
-      }
-      
-      myModelName.find({}, options, (err, res) => {
+      myModelName.find((err, res) => {
         if (err)
           throw err
-        else {
+        else
           socket.emit('output', res)
-        }
       })
-
-      socket.on('input', function (message) {
-        let data = { message: message }
-        new myModelName(data).save((err, result)=>{
-          if(err)
-            throw err
-          else
-            {
-              console.log(result)
-              myModelName.findById(mongoose.Types.ObjectId(result.id),(err, res) => {
-                if (err)
-                  throw err
-                else {
-                  io.emit('output', res)
-                }
-              })
-            }
-        })
+      socket.on('room', function (data) {
+        socket.join(data.roomId);
+        socket.on('input', function (data) {
+          data.socketId = socket.id
+          new myModelName(data).save((err, result) => {
+            if (err)
+              throw err
+            else
+              io.emit('output', result)
+          })
+        });
       });
-
       socket.on('disconnect', function () {
-        
-      });
 
+      });
     });
   }
 ```
