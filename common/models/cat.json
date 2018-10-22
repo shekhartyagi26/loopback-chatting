@@ -9,6 +9,14 @@
     "message": {
       "type": "string",
       "required": true
+    },
+    "roomId":{
+      "type": "string",
+      "required": true
+    },
+    "socketId":{
+      "type": "string",
+      "required": true
     }
   },
   "validations": [],

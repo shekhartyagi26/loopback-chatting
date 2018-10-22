@@ -24,13 +24,11 @@
     <script>
       $(function () {
         var socket = io();
+        socket.emit('room', { roomId: 1 });
         $('form').submit(function(){
-          socket.emit('input', $('#m').val());
+          socket.emit('input', { roomId: 1, message:$('#m').val() });
           $('#m').val('');
           return false;
-        });
-        socket.on('connect', function() {
-          console.log(' Connected !');
         });
         socket.on('output', function(data){
           if(Array.isArray(data)){
