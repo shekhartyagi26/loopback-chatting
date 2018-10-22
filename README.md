@@ -23,19 +23,52 @@ For more details, see [https://loopback.io/](https://loopback.io/).
 
 ## Install the LoopBack CLI tool.
 
-$ npm install -g loopback-cli
+  $ npm install -g @loopback/cli
 
 ## Create a new loopback application
 
-$ slc loopback
+  $ lb
 
-## Create a new model
+? What's the name of your application? loopbackProject
+? Enter name of the directory to contain the project: loopbackProject
+   create loopbackProject/
+     info change the working directory to loopbackProject
 
-$ slc loopback:model
+? Which version of LoopBack would you like to use? 3.x (Active Long Term Support
+)
+? What kind of application do you have in mind? empty-server (An empty LoopBack 
+API, without any configured models or datasources)
+
+## Change directory to your app
+  
+  $ cd loopbackProject
+
+## Create a model in your app
+
+  $ lb model
+
+? Enter the model name: cat
+? Select model's base class PersistedModel
+? Expose cat via the REST API? Yes
+? Custom plural form (used to build REST URL): 
+? Common model or server only? common
+
+Let's add some user properties now.
+
+Enter an empty property name when done.
+? Property name: name
+   invoke   loopback:property
+? Property type: string
+? Required? Yes
+? Default value[leave blank for none]:
+
+## Run the app
+
+  $ node .
 
 ## Install the LoopBack MongoDB connector
 
-$ npm install --save loopback-connector-mongodb
+  $ npm install --save loopback-connector-mongodb
 
 ##  Configure the data source
 
