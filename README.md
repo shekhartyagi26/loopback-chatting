@@ -20,6 +20,7 @@ LoopBack tools include:
 
 For more details, see [https://loopback.io/](https://loopback.io/).
 
+<<<<<<< HEAD
 
 ## Install the LoopBack CLI tool.
 
@@ -207,7 +208,6 @@ Add file in server/index.html
 </html>
 ```
 
-
 ### Connectors
 * [loopback-connector-mongodb](https://github.com/strongloop/loopback-connector-mongodb)
 * [loopback-connector-mysql](https://github.com/strongloop/loopback-connector-mysql)
@@ -222,4 +222,3 @@ Add file in server/index.html
   * [LoopBack Google Group](https://groups.google.com/forum/#!forum/loopbackjs).
   * [GitHub issues](https://github.com/strongloop/loopback/issues).
   * [Gitter chat](https://gitter.im/strongloop/loopback).
-
