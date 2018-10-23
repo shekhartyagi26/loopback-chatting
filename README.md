@@ -1,4 +1,4 @@
-# LoopBack
+# ChattApp
 
 LoopBack is a highly-extensible, open-source Node.js framework that enables you to:
 

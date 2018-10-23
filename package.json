@@ -1,5 +1,5 @@
 {
-  "name": "test",
+  "name": "ChattApp",
   "version": "1.0.0",
   "main": "server/server.js",
   "engines": {
