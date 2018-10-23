@@ -20,8 +20,6 @@ LoopBack tools include:
 
 For more details, see [https://loopback.io/](https://loopback.io/).
 
-<<<<<<< HEAD
-
 ## Install the LoopBack CLI tool.
 
   $ npm install -g @loopback/cli
