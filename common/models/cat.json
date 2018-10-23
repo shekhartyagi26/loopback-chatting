@@ -6,20 +6,16 @@
     "validateUpsert": true
   },
   "properties": {
-    "name": {
+    "message": {
       "type": "string",
       "required": true
     },
-    "age": {
-      "type": "number",
+    "roomId":{
+      "type": "string",
       "required": true
     },
-    "height": {
-      "type": "number",
-      "required": true
-    },
-    "weight": {
-      "type": "number",
+    "socketId":{
+      "type": "string",
       "required": true
     }
   },
